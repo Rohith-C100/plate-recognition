@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x5br53uukd3-xk)f)+tf)fmg3hcx9@0msiopvxcycvam4h^+^1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://platerec-app.herokuapp.com/']
 
 
 # Application definition
