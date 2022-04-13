@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+  <form action="" method="post" class="shadow-lg p-3 mb-5 bg-body border rounded p-4 mx-auto" style="width:35vw;">
+    <span class="fs-3">Sign up</span>
+    <hr>
+    {% csrf_token %}
+    <table>
+        <tr>
+          <div class="mb-3">
+            <td class="form-label">{{ form.first_name.label_tag }}</td>
+            <td>{{ form.first_name}}</td>
+        </div>
+        </tr>
+        <tr>
+          <div class="mb-3">
+            <td class="form-label">{{ form.last_name.label_tag }}</td>
+            <td>{{ form.last_name }}</td>
+          </div>
+        </tr>
+        <tr>
+          <div class="mb-3">
+            <td class="form-label">{{ form.email_id.label_tag }}</td>
+            <td>{{ form.email_id }}</td>
+          </div>
+        </tr>
+        <tr>
+          <div class="mb-3">
+            <td class="form-label">{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </div>
+        </tr>
+        <tr>
+          <div class="mb-3">
+            <td class="form-label">{{ form.re_enter_password.label_tag }}</td>
+            <td>{{ form.re_enter_password }}</td>
+          </div>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+{% endblock %}

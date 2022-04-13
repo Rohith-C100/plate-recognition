@@ -1,0 +1,111 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<style>
+ .dissapear{
+   display:none;
+ }
+ .appear{
+   display:block;
+ }
+</style>
+<div id="content" class="container">
+    <div class="row">
+      <div class="col-4 border rounded">
+        <img id="img" src="{{ plate.plate_img.url }}" class="img-fluid"/>
+      </div>
+      <div class="col-6 shadow-sm p-3 m-2 border bg-body rounded">
+        <div class="fs-4 mb-3">The text is:</div>
+        <textarea id="text" class="form-control mb-3"></textarea>
+        <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
+      </div>
+    </div>
+  </div>
+
+
+<div id="loader" class="d-flex position-absolute top-50 start-50 translate-middle">
+    <span id="temp" class="fs-2 fw-bolder animate__animated animate__zoomIn animate__infinite">Recognizing Text...</span>
+</div>
+
+<script>
+
+  var content=document.getElementById("content")
+  console.log(content)
+  content.classList.add("dissapear");
+  var temp=document.getElementById("temp")
+  var display_text=document.getElementById("text")
+  var play=document.getElementById("play")
+  var a;
+  var text="";
+  console.log(temp)
+
+  function makevisible() {
+    content.classList.remove("dissapear");
+    temp.classList.add("dissapear")
+    console.log("made visible");
+  }
+
+   fetch('/app/identify/{{id}}')
+  .then( response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then( json => {
+    a=JSON.parse(json);
+    console.log(a);
+    makevisible();
+    print();
+    //refresh();
+  })
+  .catch( error => {
+    console.error(`Could not get products: ${error}`);
+    makevisible();
+    display_text.innerHTML="Can not recognize the plate!!!";
+  });
+
+  {% comment %} function refresh(){
+    img=document.getElementById("img");
+    var temp=img.src;
+    img.src=img.src+"?t="+ new Date();
+    console.log("refreshed image");
+  } {% endcomment %}
+
+  function print(){
+    for(var x=0;x<a.length;x++){
+        text+=a[x][1]+"\n";
+    }
+    display_text.innerHTML=text;
+  }
+
+  function speak(){
+    var msg = new SpeechSynthesisUtterance();
+    msg.lang = "en-US";
+    msg.text = display_text.innerHTML;
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 1;   
+    window.speechSynthesis.speak(msg);
+  } 
+
+  play.addEventListener("click",speak);
+  
+
+  {% comment %} function draw() {
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+      var img = document.getElementById("img");
+      width=img.naturalWidth
+      height=img.naturalHeigth
+      ctx.drawImage(img,0,0,width,height);
+      ctx.strokeRect(470, 109, 50, 50);
+    }
+  }
+  draw() {% endcomment %}
+</script>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+	<form method = "post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<span class="fs-3">OCR support</span>
+		<div class="mb-3">
+			{{ form.purpose.errors }}
+			<label class="form-label" for="{{ form.plate_img.id_for_label }}">Purpose</label>
+			{{ form.purpose }}
+		</div>
+		<div class="mb-3">
+			{{ form.plate_img.errors }}
+			<label class="form-label" for="{{ form.plate_img.id_for_label }}">Upload Image</label>
+			{{ form.plate_img }}
+		</div>
+		<button type="submit" class="btn btn-primary">Upload</button>
+	</form>
+{% endblock %}
+
