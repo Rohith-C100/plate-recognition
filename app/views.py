@@ -18,8 +18,9 @@ from json import dumps
 # import imutils
 # import easyocr
 import json
-from PIL import Image
 import pytesseract
+from PIL import Image
+pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 import cv2
 import imutils
 import numpy as np
