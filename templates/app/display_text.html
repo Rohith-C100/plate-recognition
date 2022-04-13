@@ -39,6 +39,7 @@
   var play=document.getElementById("play")
   var a;
   var text="";
+  var resp;
   console.log(temp)
 
   function makevisible() {
@@ -55,11 +56,9 @@
     return response.json();
   })
   .then( json => {
-    a=JSON.parse(json);
-    console.log(a);
+    console.log(json);
     makevisible();
-    print();
-    //refresh();
+    display_text.innerHTML=json;
   })
   .catch( error => {
     console.error(`Could not get products: ${error}`);
@@ -74,12 +73,6 @@
     console.log("refreshed image");
   } {% endcomment %}
 
-  function print(){
-    for(var x=0;x<a.length;x++){
-        text+=a[x][1]+"\n";
-    }
-    display_text.innerHTML=text;
-  }
 
   function speak(){
     var msg = new SpeechSynthesisUtterance();

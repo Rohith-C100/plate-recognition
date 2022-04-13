@@ -19,7 +19,7 @@
     </div>
     <div class="col-6 shadow-sm p-3 m-2 border bg-body rounded">
       <div class="fs-3 mb-3 bold">The plate is:</div>
-      <div id="plate" class="fs-4"></div>
+      <textarea id="plate" class="form-control mb-3"></textarea>
       <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
     </div>
   </div>
@@ -54,10 +54,9 @@
     return response.json();
   })
   .then( json => {
-    a=JSON.parse(json);
-    console.log(a);
+    console.log(json);
     makevisible();
-    plate.innerHTML=a[0][1];
+    plate.innerHTML=json;
     refresh();
   })
   .catch( error => {
