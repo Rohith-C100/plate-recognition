@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x5br53uukd3-xk)f)+tf)fmg3hcx9@0msiopvxcycvam4h^+^1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'https://platerec-app.herokuapp.com/']
 
@@ -123,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "app/static",
 ]
@@ -144,8 +144,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'adtransportauthority@gmail.com'
 EMAIL_HOST_PASSWORD = 'transabcd1234'
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/staticfiles/'
 # from django.core.mail import send_mail
 # from django.conf import settings
 
