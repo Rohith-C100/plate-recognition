@@ -62,13 +62,13 @@
   .catch( error => {
     console.error(`Could not get products: ${error}`);
     makevisible();
-    plate.innerHTML="Can not recognize the plate!!!";
+    plate.value="Can not recognize the plate!!!";
   });
 
   function refresh(){
     img=document.getElementById("img");
     var temp=img.src;
-    img.src=img.src;
+    img.src=img.src+"?t="+new Date().getTime();;
     console.log("refreshed image");
   }
  
@@ -89,7 +89,7 @@
   function speak(){
     var msg = new SpeechSynthesisUtterance();
     msg.lang = "en-US";
-    msg.text = plate.innerHTML;
+    msg.text = plate.value;
     msg.volume = 1;
     msg.rate = 1;
     msg.pitch = 1;   

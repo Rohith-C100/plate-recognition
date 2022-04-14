@@ -19,7 +19,8 @@
       <div class="col-6 shadow-sm p-3 m-2 border bg-body rounded">
         <div class="fs-4 mb-3">The text is:</div>
         <textarea id="text" class="form-control mb-3"></textarea>
-        <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
+        <input id="play" type="button" value="Read" class="btn btn-primary mx-3"></input>
+        <input id="clipboard" type="button" value="Copy to clipboard" class="btn btn-primary mx-3"></input>
       </div>
     </div>
   </div>
@@ -37,6 +38,7 @@
   var temp=document.getElementById("temp")
   var display_text=document.getElementById("text")
   var play=document.getElementById("play")
+  var clipboard=document.getElementById("clipboard")
   var a;
   var text="";
   var resp;
@@ -85,7 +87,7 @@
   } 
 
   play.addEventListener("click",speak);
-  
+  clipboard.addEventListener("click",copy);
 
   {% comment %} function draw() {
     var canvas = document.getElementById('canvas');
@@ -99,6 +101,18 @@
     }
   }
   draw() {% endcomment %}
+
+  function copy(){
+    var copyText = document.getElementById("text");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  
+     /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+    console.log(copyText)
+  }
 </script>
 
 {% endblock %}
