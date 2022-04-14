@@ -20,12 +20,11 @@ from json import dumps
 import json
 import pytesseract
 from PIL import Image
-# pytesseract.pytesseract.tesseract_cmd = "/app/.apt/usr/bin/tesseract"
+pytesseract.pytesseract.tesseract_cmd = "/app/.apt/usr/bin/tesseract"
 
 import cv2
 import imutils
 import numpy as np
-
 
 
 def index(request):
