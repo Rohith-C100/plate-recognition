@@ -1,0 +1,56 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<div class="shadow border rounded p-4">
+  <div class="fs-3">{{ vehical.plate_number }}</div>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <tbody>
+          <tr class="border rounded">
+            <td><strong>type:</strong></td>
+            <td>{{ vehical.type }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Model:</strong></td>
+            <td>{{ vehical.model }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Color:</strong></td>
+            <td>{{ vehical.color }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Date of Registration:</strong></td>
+            <td>{{ vehical.date_of_registration }}</td>
+          </tr>
+      </tbody>
+    </table> 
+    <div class="fs-3">Owner Details:</div>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <tbody>
+                <tr class="border rounded">
+                    <td><strong>Name:</strong></td>
+                    <td>{{ vehical.owner.name }}</td>
+                </tr>
+                <tr class="border rounded">
+                    <td><strong>Education:</strong></td>
+                    <td>{{ vehical.owner.education }}</td>
+                </tr>
+                <tr class="border rounded">
+                    <td><strong>Email:</strong></td>
+                    <td>{{ vehical.owner.email }}</td>
+                </tr>
+                <tr class="border rounded">
+                    <td><strong>Address:</strong></td>
+                    <td>{{ vehical.owner.address }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a  class="btn btn-primary" type="button" href="{% url 'fine' pnum=vehical.plate_number %}">Fine</a>
+        <a class="btn btn-primary" type="button" href="{% url 'complain' pnum=vehical.plate_number %}">Complain</a>
+    </div>
+</div>
+{% endblock %}
+

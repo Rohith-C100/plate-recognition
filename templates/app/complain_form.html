@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+	<form class="shadow border rounded p-4" method = "post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<span class="fs-3 fw-bold text-decoration-underline text-danger">Complain for :{{vehical.plate_number}}</span>
+        <div class="mb-3">
+            {{ form.severity.errors }}
+            <label class="form-label" for="{{ form.severity.id_for_label }}">Severity</label>
+            {{ form.severity}}
+        </div>
+        <div class="mb-3">
+            {{ form.date_of_incident.errors }}
+            <label class="form-label" for="{{ form.date_of_incident.id_for_label }}">Date of occurence</label>
+            {{ form.date_of_incident }}
+        </div> 
+        <div class="mb-3">
+            {{ form.details.errors }}
+            <label class="form-label" for="{{ form.details.id_for_label }}">Details</label>
+            {{ form.details }}
+        </div> 
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+{% endblock %}
+

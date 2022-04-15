@@ -1,6 +1,8 @@
+from random import choices
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import *
+from django.contrib.admin.widgets import AdminDateWidget
 
 class sign_up_form(forms.Form):
     first_name=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,min_length=2,required=True)
@@ -32,3 +34,38 @@ class ImageForm(forms.ModelForm):
             "plate_img": forms.ClearableFileInput(attrs={'class':'form-control'}),
             'purpose': forms.Select(attrs={'class':'form-select'})
         }
+
+class FineForm(forms.ModelForm):
+
+    class Meta:
+        model = Fine
+        fields = ['img','reason','amount','date','details']
+        widgets = {
+            'img': forms.ClearableFileInput(attrs={'class':'form-control'}),
+            'reason':forms.TextInput(attrs={'class':'form-control'}),
+            'date': AdminDateWidget(attrs={'class':'form-control','placeholder': 'yyyy-mm-dd'}),
+            'details': forms.Textarea(attrs={'class':'form-control'}),
+            'amount': forms.Select(attrs={'class':'form-select'}),
+        }
+
+class ComplainForm(forms.ModelForm):
+
+    class Meta:
+        model = Complain
+        fields = ['severity','date_of_incident','details']
+        widgets = {
+            'date_of_incident': forms.DateInput(attrs={'class':'form-control','placeholder': 'yyyy-mm-dd'}),
+            'severity': forms.Select(attrs={'class':'form-select'}),
+            'details': forms.Textarea(attrs={'class':'form-control'}),
+        }
+
+class SearchForm(forms.Form):
+    plate_number=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,min_length=5,required=True)
+
+class HistoryForm(forms.Form):
+    CHOICES=[
+        ("complain","complain"),
+        ("fine","fine"),
+    ]
+    plate_number=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,min_length=5,required=True)
+    type=forms.ChoiceField(widget=forms.Select(attrs={'class':'form-select'}),choices=CHOICES)

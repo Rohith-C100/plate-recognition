@@ -1,0 +1,30 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<div class="shadow border rounded p-4">
+  <div class="fs-3 text-danger">Complain {{complain.id}} : {{ complain.vehical.plate_number }}</div>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <tbody>
+          <tr class="border rounded">
+            <td><strong>Severity</strong></td>
+            <td>{{ complain.severity }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Date of incident</strong></td>
+            <td>{{ complain.date_of_incident }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Details:</strong></td>
+            <td>{{ complain.details }}</td>
+          </tr>
+          <tr class="border rounded">
+            <td><strong>Vehical Details:</strong></td>
+            <td><a href="{% url 'vehical' pk=complain.vehical.plate_number %}">Link</a></td>
+          </tr>
+      </tbody>
+    </table> 
+</div>
+{% endblock %}
+

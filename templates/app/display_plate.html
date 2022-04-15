@@ -13,16 +13,21 @@
 </style>
  
 <div id="content" class="container">
-  <div class="row">
-    <div class="col-4 border rounded">
-      <img id="img" src="{{ plate.plate_img.url }}"  class="img-fluid"/>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-4 mx-3 border rounded shadow-sm">
+        <img id="img" src="{{ plate.plate_img.url }}"  class="img-fluid"/>
+      </div>
+        <div class="col-6  bg-body border rounded shadow-sm">
+          <div class="fs-3 mb-3 bold">The plate is:
+            {{form.plate_number}}
+          </div>
+          <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
+          <input type="submit" value="Get Info" class="btn btn-primary mb-3"></input>
+        </div>
     </div>
-    <div class="col-6 shadow-sm p-3 m-2 border bg-body rounded">
-      <div class="fs-3 mb-3 bold">The plate is:</div>
-      <textarea id="plate" class="form-control mb-3"></textarea>
-      <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
-    </div>
-  </div>
+  </form>
 </div>
 
 <div id="loader" class="d-flex position-absolute top-50 start-50 translate-middle">
@@ -36,7 +41,7 @@
   console.log(content)
   content.classList.add("dissapear");
   var temp=document.getElementById("temp")
-  var plate=document.getElementById("plate")
+  var plate=document.getElementById("id_plate_number")
   var play=document.getElementById("play")
   console.log(temp)
 
@@ -56,7 +61,7 @@
   .then( json => {
     console.log(json);
     makevisible();
-    plate.innerHTML=json;
+    plate.value=json;
     refresh();
   })
   .catch( error => {

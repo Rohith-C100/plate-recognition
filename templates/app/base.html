@@ -42,11 +42,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-  <div class="navbar-nav">
+  {% comment %} <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      {% comment %} <div id="google_translate_element"></div> {% endcomment %}
+      <div id="google_translate_element"></div>
     </div>
-  </div>
+  </div> {% endcomment %}
 </header>
 {% endblock %}
 {% block sidebar %}
@@ -68,15 +68,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="">
+            <a class="nav-link text-light" href="{% url 'search' %}">
               <span data-feather="search"></span>
               Search
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="">
+            <a class="nav-link text-light" href="{% url 'admin:index' %}">
               <span data-feather="users"></span>
               Admin
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'history' %}">
+              <span data-feather="clock"></span>
+              Vehical History
             </a>
           </li>
            {% if user.is_authenticated %}

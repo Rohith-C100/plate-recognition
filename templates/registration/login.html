@@ -14,7 +14,7 @@
     {% endif %}
   {% endif %}
 
-  <form method="post" action="{% url 'login' %}" class="shadow-lg p-3 mb-5 bg-body border rounded p-4 mx-auto" style="width:30vw;">
+  <form method="post" action="{% url 'login' %}" class="container shadow p-3 mb-5 bg-body border rounded p-4">
     <span class="fs-3">Login</span>
     <hr>
     {% csrf_token %}
