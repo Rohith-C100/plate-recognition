@@ -1,7 +1,7 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-  <div class="shadow border rounded p-4">
+  <div class="shadow border rounded p-4 bg-light">
     <div class="fs-3">Vehical History</div>
     <hr>
     <form action="" method="post">
@@ -27,7 +27,7 @@
     </form>
     <hr>
   {% if complain_list %}
-  <div class="table-responsive">
+  <div class="table-responsive bg-body shadow border rounded p-4">
     <table class="table table-striped table-sm">
       <thead>
         <tr>
@@ -50,7 +50,7 @@
     </table> 
   </div>
   {% elif fine_list %}
-  <div class="table-responsive">
+  <div class="table-responsive bg-body shadow border rounded p-4">
     <table class="table table-striped table-sm">
       <thead>
         <tr>

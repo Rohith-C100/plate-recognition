@@ -16,10 +16,10 @@
   <form action="" method="post">
     {% csrf_token %}
     <div class="row">
-      <div class="col-4 mx-3 border rounded shadow-sm">
+      <div class="col-4 mx-3 border rounded shadow-sm bg-light">
         <img id="img" src="{{ plate.plate_img.url }}"  class="img-fluid"/>
       </div>
-        <div class="col-6  bg-body border rounded shadow-sm">
+        <div class="col-6 border rounded shadow-sm bg-light">
           <div class="fs-3 mb-3 bold">The plate is:
             {{form.plate_number}}
           </div>

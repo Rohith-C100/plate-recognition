@@ -1,9 +1,9 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-	<form class="shadow border rounded p-4" method = "post" enctype="multipart/form-data">
+	<form class="shadow border rounded p-4 bg-light" method = "post" enctype="multipart/form-data">
 		{% csrf_token %}
-		<span class="fs-3 fw-bold text-decoration-underline text-danger">Fine for :{{vehical.plate_number}}</span>
+		<span class="fs-3 text-decoration-underline text-danger">Fine for :{{vehical.plate_number}}</span>
         <div class="mb-3">
             {{ form.img.errors }}
             <label class="form-label" for="{{ form.img.id_for_label }}">Image</label>

@@ -143,7 +143,7 @@ def identify(request,pk):
         return JsonResponse(text,safe=False)
     else:
         IMAGE_PATH =sample.plate_img.path
-        text=pytesseract.image_to_string(Image.open(IMAGE_PATH))
+        text=pytesseract.image_to_string(Image.open(IMAGE_PATH), lang ='eng')
         return JsonResponse(text,safe=False)
 
 def display(request,pk):
