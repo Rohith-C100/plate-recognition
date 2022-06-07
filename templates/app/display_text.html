@@ -102,7 +102,7 @@
   }
   draw() {% endcomment %}
 
-  function copy(){
+  async function copy(){
     var copyText = document.getElementById("text");
 
     /* Select the text field */
@@ -110,8 +110,8 @@
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
   
      /* Copy the text inside the text field */
-    navigator.clipboard.writeText(copyText.value);
-    console.log(copyText)
+    await navigator.clipboard.writeText(copyText.value)
+    .then(()=>console.log(copyText));
   }
 </script>
 

@@ -3,6 +3,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import *
 from django.contrib.admin.widgets import AdminDateWidget
+from django.contrib.auth.models import User
 
 class sign_up_form(forms.Form):
     first_name=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,min_length=2,required=True)
@@ -23,6 +24,13 @@ class sign_up_form(forms.Form):
         # else:
         #     return cleaned_data
 
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        try:
+                User.objects.get(username=username)
+        except User.DoesNotExist:
+                return username
+        raise forms.ValidationError("Username already taken.")
 
 
 class ImageForm(forms.ModelForm):
