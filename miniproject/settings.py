@@ -142,7 +142,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'adtransportauthority@gmail.com'
-EMAIL_HOST_PASSWORD = 'transabcd1234'
+EMAIL_HOST_PASSWORD = 'pxpmrabotoismxyv'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/staticfiles/'
