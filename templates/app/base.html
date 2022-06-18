@@ -94,6 +94,12 @@
               Vehical History
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'doc_search' %}">
+              <span data-feather="file-text"></span>
+              Doc Search
+            </a>
+          </li>
            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link text-light" href="{% url 'logout' %}?next={{request.path}}">

@@ -21,4 +21,5 @@ urlpatterns += [
     path('history', views.vehical_histroy,name='history'),
     path('complain_details/<int:pk>', views.ComplainDetailView.as_view(),name='complain_detail'),
     path('fine_details/<int:pk>', views.FineDetailView.as_view(),name='fine_detail'),
+    path('docsearch/', views.doc_search,name='doc_search'),
 ]

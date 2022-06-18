@@ -25,6 +25,8 @@
           </div>
           <input id="play" type="button" value="Read" class="btn btn-primary mb-3"></input>
           <input type="submit" value="Get Info" class="btn btn-primary mb-3"></input>
+          <div id="cl"></div>
+          <div id="type"></div>
         </div>
     </div>
   </form>
@@ -43,6 +45,8 @@
   var temp=document.getElementById("temp")
   var plate=document.getElementById("id_plate_number")
   var play=document.getElementById("play")
+  var cl=document.getElementById("cl")
+  var type=document.getElementById("type")
   console.log(temp)
 
   function makevisible() {
@@ -63,6 +67,8 @@
     makevisible();
     a=json;
     plate.value=a.results[0].plate.toUpperCase();
+    cl.innerHTML="Confidence level : "+a.results[0].score;
+    type.innerHTML="Type : "+a.results[0].vehicle.type;
     refresh();
   })
   .catch( error => {

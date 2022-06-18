@@ -1,0 +1,57 @@
+{% extends "app/base.html" %}
+{% load custom_tags %}
+{% block content %}
+<style>
+    mark { 
+      background-color: yellow;
+      color: black;
+    }
+</style>
+  <div class="shadow border rounded p-4 bg-light">
+    <div class="fs-3">Document Search</div>
+    <hr>
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.non_field_errors }}
+        <div class="row g-3">
+          <div class="col-auto">
+              {{ form.plate_number.errors }}
+              {{ form.plate_number }}
+              <label for="{{ form.plate_number.id_for_label }}">Enter the plate number:</label>
+          </div>
+          <div class="col-auto">
+            <input  class="btn btn-primary" type="submit" value="Search">
+          </div>
+        </div>
+      </table>
+    </form>
+<hr>
+  {% if vehical %}
+            <div>
+                {% for detail in result %}
+                    <div class="table-responsive shadow-sm border rounded p-4 my-2">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col">Line No</th>
+                              <th scope="col">Content</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for i in detail %}
+                              <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ detail|dict_key:i|safe }}</td>
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table> 
+                      </div>
+                {% endfor %}
+            </div>
+  {% else %}
+    <div class="f3 fw-bold">There is no vehical with this number</div>
+  {% endif %}
+ <div>
+{% endblock %}
