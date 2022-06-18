@@ -1,11 +1,17 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+<style>
+  ul{
+      list-style-type: none;
+  }
+</style>
   <form action="" method="post" class="container shadow p-3 mb-5 border rounded p-4 bg-light">
     <span class="fs-3">Sign up</span>
     <hr>
     {% csrf_token %}
     <table>
+      <div class="text-danger">{{form.non_field_errors}}</div>
         <tr>
           <div class="mb-3">
             <td class="form-label">{{ form.first_name.label_tag }}</td>
@@ -23,6 +29,7 @@
             <td class="form-label">{{ form.email_id.label_tag }}</td>
             <td>{{ form.email_id }}</td>
           </div>
+          <div class="text-danger">{{form.email_id.errors}}</div>
         </tr>
         <tr>
           <div class="mb-3">

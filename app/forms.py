@@ -68,7 +68,7 @@ class ComplainForm(forms.ModelForm):
         }
 
 class SearchForm(forms.Form):
-    plate_number=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,min_length=5,required=True)
+    plate_number=forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),strip=True,required=True)
 
 class HistoryForm(forms.Form):
     CHOICES=[

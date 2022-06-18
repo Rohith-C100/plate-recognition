@@ -48,8 +48,9 @@
                 </tr>
             </tbody>
         </table>
+        {% if user.is_authenticated and user.is_staff %}
         <a  class="btn btn-primary" type="button" href="{% url 'fine' pnum=vehical.plate_number %}">Fine</a>
-        <a class="btn btn-primary" type="button" href="{% url 'complain' pnum=vehical.plate_number %}">Complain</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

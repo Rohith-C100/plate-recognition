@@ -18,7 +18,7 @@
           <div class="col-auto">
               {{ form.plate_number.errors }}
               {{ form.plate_number }}
-              <label for="{{ form.plate_number.id_for_label }}">Enter the plate number:</label>
+              <label for="{{ form.plate_number.id_for_label }}">Enter the related text:</label>
           </div>
           <div class="col-auto">
             <input  class="btn btn-primary" type="submit" value="Search">
@@ -27,7 +27,7 @@
       </table>
     </form>
 <hr>
-  {% if vehical %}
+  {% if flag %}
             <div>
                 {% for detail in result %}
                     <div class="table-responsive shadow-sm border rounded p-4 my-2">
@@ -51,7 +51,7 @@
                 {% endfor %}
             </div>
   {% else %}
-    <div class="f3 fw-bold">There is no vehical with this number</div>
+    <div class="f3 fw-bold">There is no relevant documents</div>
   {% endif %}
  <div>
 {% endblock %}

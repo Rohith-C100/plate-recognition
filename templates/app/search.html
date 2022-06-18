@@ -71,8 +71,12 @@
                         </tbody>
                     </table> 
                 </div>
-                <a  class="btn btn-primary" type="button" href="{% url 'fine' pnum=vehical.plate_number %}">Fine</a>
-        <a class="btn btn-primary" type="button" href="{% url 'complain' pnum=vehical.plate_number %}">Complain</a>
+                {% if user.is_authenticated and user.is_staff %}
+              <a  class="btn btn-primary" type="button" href="{% url 'fine' pnum=vehical.plate_number %}">Fine</a>
+              {% endif %}
+              {% if user.is_authenticated and not user.is_staff %}
+              <a class="btn btn-primary" type="button" href="{% url 'complain' pnum=vehical.plate_number %}">Complain</a>
+              {% endif %}
             </div>
   {% else %}
     <div class="f3 fw-bold">There is no vehical with this number</div>

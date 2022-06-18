@@ -59,7 +59,12 @@ def signup(request):
 
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('index') )
+        else:
+            context = {
+                'form': form,
+            }
 
+            return render(request, 'app/signup.html', context)
     # If this is a GET (or any other method) create the default form.
     else:
         form = sign_up_form()
@@ -116,6 +121,10 @@ def identify(request,pk):
     else:
         IMAGE_PATH =sample.plate_img.path
         text=pytesseract.image_to_string(Image.open(IMAGE_PATH), lang ='eng')
+        res = " ".join(text.split())
+        file1 = default_storage.open(os.path.join('docs','scan.txt'), 'a')
+        file1.write(res+"\n")
+        file1.close()
         return JsonResponse(text,safe=False)
 
 def display(request,pk):
@@ -159,7 +168,13 @@ def fine_vehicle(request,pnum):
             recipient_list = [vehical.owner.email,]
             send_mail( subject, message, email_from, recipient_list,fail_silently=False)
             return HttpResponseRedirect(reverse('success'))
+        else:
+            context = {
+            'form': form,
+            'vehical': vehical,
+        }
 
+        return render(request, 'app/fine_form.html', context)
     # If this is a GET (or any other method) create the default form.
     else:
         form = FineForm()
@@ -285,14 +300,11 @@ def doc_search(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             plate_number=form.cleaned_data['plate_number']
-            try:
-                vehical = Vehical.objects.get(pk=plate_number)
-            except Vehical.DoesNotExist:
-                vehical = None
+            string = plate_number
             result=[]
+            flag=None
             for filename in os.listdir(os.path.join(os.getcwd() ,'staticfiles/docs')):
                 file1 = default_storage.open(os.path.join('docs',filename), 'r')
-                string = plate_number
                 index = 0
                 temp={}
                 # Loop through the file line by line
@@ -302,6 +314,7 @@ def doc_search(request):
                     
                     # checking string is present in line or not
                     if string in line:
+                        flag=True
                         temp['file']=filename
                         line=line.replace(string," <mark> "+string+" </mark> ")
                         temp[index]=line
@@ -310,16 +323,16 @@ def doc_search(request):
                 # closing text file    
                 file1.close() 
             context = {
-                'vehical': vehical,
+                'flag': flag,
                 'form': form,
                 'result':result
             }
         return render(request, 'app/search_doc.html', context)  
     else:
         form = SearchForm()
-        vehical=None
+        flag=None
         context = {
-            'vehical': vehical,
+            'flag': flag,
             'form': form
         }
         return render(request, 'app/search_doc.html', context)
