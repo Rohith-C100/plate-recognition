@@ -163,7 +163,7 @@ def fine_vehicle(request,pnum):
             fine.vehical=vehical
             fine.save()
             subject = fine.reason
-            message = fine.details+"\n"+"fine amount: "+str(fine.amount)
+            message = "Mr/Ms "+str(vehical.owner.name)+" your vehical numbered "+str(vehical.plate_number)+" has been fined for "+str(fine.reason)+". Details can be is as follows:\n"+str(fine.details)+"\n"+"fine amount: "+str(fine.amount)+" fill the fine before or on "+str(fine.date)+'\n\n'+"Transport Authority\nGovt of State"
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [vehical.owner.email,]
             send_mail( subject, message, email_from, recipient_list,fail_silently=False)
