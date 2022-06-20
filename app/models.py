@@ -7,6 +7,8 @@ class Plate(models.Model):
         ('text_extraction', 'text extraction'),   ]
 	purpose = models.CharField(choices=CHOICES,default='plate recognition',max_length=50,null=True,blank=True)
 	plate_img = models.ImageField(upload_to='images/')
+	def __str__(self):
+		return self.purpose
 
 class Owner(models.Model):
 	aadhar_number=models.CharField(max_length=100)
@@ -14,6 +16,8 @@ class Owner(models.Model):
 	education=models.CharField(max_length=100)
 	email=models.EmailField(max_length=254)
 	address=models.CharField(max_length=200)
+	def __str__(self):
+		return self.name
 
 class Vehical(models.Model):
 	CHOICES = [
@@ -46,6 +50,9 @@ class Complain(models.Model):
 	details=models.CharField(max_length=500)
 	vehical=models.ForeignKey('Vehical',on_delete=models.CASCADE)
 
+	def __str__(self):
+		return self.severity
+
 class Fine(models.Model):
 	CHOICES = [
         (100,"100"),
@@ -59,4 +66,6 @@ class Fine(models.Model):
 	amount=models.IntegerField(choices=CHOICES)
 	details=models.CharField(max_length=800)
 	vehical=models.ForeignKey('Vehical',on_delete=models.CASCADE)
-	
+
+	def __str__(self):
+		return self.reason
