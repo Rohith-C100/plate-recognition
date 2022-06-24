@@ -116,7 +116,6 @@ def identify(request,pk):
                 files=dict(upload=fp),
                 headers={'Authorization': 'Token 8834d47427b21930011e3376c2d87c2782ddc9cc'})
         # pprint(response.json())
-        pprint(response.json())
         return JsonResponse(response.json(),safe=False)
     else:
         IMAGE_PATH =sample.plate_img.path

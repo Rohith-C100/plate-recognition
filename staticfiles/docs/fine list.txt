@@ -1,0 +1,10 @@
+KA06P2828   sagar   Parked on the wrong side.    1000    PAID
+KA63S1727   sagar   Riding without hemet.        500     NOT PAID
+KA63S1727   sagar   No insurance.                1500    PAID
+KA06HH3788  sagar   Going in one way.            500     PAID
+KA06AB3110  MURTHY  No entry entry.              500     NOT PAID
+KA06AB3110  MURTHY  Over load.                   500     PAID
+KA06D9978   MURTHY  Over load.                   500     NOT PAID
+KA06D9978   MURTHY  Parked in No parking.        500     NOT PAID
+KA06EH5369  RAMESH  Parking on wrong side.       1000    PAID
+KA02EG5225  ROHAN   Riding without helmet.       500     PAID
